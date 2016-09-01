@@ -1,0 +1,56 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container">
+    <h1 class="page-header">แก้ไขข้อมูลส่วนตัว</h1>
+    <div class="row">
+        <!-- left column -->
+        <form class="form-horizontal" role="form" name="form">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="text-center">
+                    <img ng-src="/api/readimages?token={{token}}" class="avatar img-circle img-thumbnail">
+                    <h5>ต้องการอัพโหลดรูปใหม่...</h5>
+                    <input type="file" class="text-center center-block well well-sm" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-resize="{width: 300, height: 300}" required>
+                    <p>
+                        <button type="button" ng-click="uploadPic()" class=" text-center btn btn-primary"><i class="fa fa-upload"></i> อัพโหลด</button>
+                    </p>
+                </div>
+            </div>
+            <!-- edit form column -->
+            <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+                <h3>รายละเอียดข้อมูลส่วนตัว</h3>
+                <div class="form-group">
+                    <label for="input-fname" class="col-lg-3 control-label">ชื่อ:</label>
+                    <div class="col-lg-8">
+                        <input type="text" ng-model="user.fname" value="" placeholder="ชื่อ" id="input-fname" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input-lname" class="col-lg-3 control-label">นามสกุล:</label>
+                    <div class="col-lg-8">
+                        <input type="text" ng-model="user.lname" value="" placeholder="นามสกุล" id="input-lname" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input-username" class="col-md-3 control-label">ชื่อผู้ใช้งาน:</label>
+                    <div class="col-md-8">
+                        <input type="text" ng-model="user.login" value="" placeholder="ชื่อผู้ใช้งาน" id="input-username" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input-password" class="col-md-3 control-label">รหัสผ่าน:</label>
+                    <div class="col-md-8">
+                        <input type="password" ng-model="user.pass" value="" placeholder="Password" id="input-password" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-8">
+                        <button type="submit" ng-click="save()" class="btn btn-primary"><i class="fa fa-save"></i> บันทึก</button>
+                        <span></span>
+                    </div>
+                </div>
+                <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+            </div>
+        </form>
+    </div>
+</div>
+<div ng-include="'components/navbar/footer.html'"></div>

@@ -1,0 +1,80 @@
+
+ls
+<button type="button" class="close" ng-click="cancel();">
+    <i class="fa fa-times-circle-o" style="margin:10px;color:black;"></i>
+</button>
+<!-- <div class="text-primary" ng-show="security"> -->
+<div class="modal-header bg-primary">
+    <h4 class="modal-title"><i class="fa fa-list"></i>
+        แสดงหุ้นทั้งหมด ของอุตสาหกรรม {{security.index_name}}, PBV อุตสาหกรรม {{security.pbv_rindex}}
+    </h4>
+</div>
+
+<div class="modal-body">
+    <!-- Data -->
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover" style="width: auto;">
+            <thead class="bg-primary">
+                <tr>
+                    <th class="col-sm-1">
+                        <a class="btn btn-info" ng-click="sortTypeSelected('security_symbol')">
+                            ชื่อหลักทรัพย์
+                            <span ng-show="sortType == 'security_symbol' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'security_symbol' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>                                                
+                    </th>
+                    <th class="col-sm-1">                        
+                        <a class="btn btn-info" ng-click="sortTypeSelected('last_traded_price')">
+                            ราคาปิด <span>{{security.trade_date| date:'yy-MM-dd'}}</span>
+                            <span ng-show="sortType == 'last_traded_price' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'last_traded_price' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>                                                                        
+                    </th>
+                    <th class="col-sm-1">                        
+                        <a class="btn btn-info" ng-click="sortTypeSelected('book_value')">
+                            Book Value
+                            <span ng-show="sortType == 'book_value' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'book_value' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>                                                                                                
+                    </th>
+                    <th class="col-sm-1">
+                        <a class="btn btn-info" ng-click="sortTypeSelected('pbv')">
+                            PBV
+                            <span ng-show="sortType == 'pbv' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'pbv' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>                                                                                                                                                
+                    </th>
+                    <th class="col-sm-1">
+                        <a class="btn btn-info" ng-click="sortTypeSelected('earning_per_share')">
+                            Eps
+                            <span ng-show="sortType == 'earning_per_share' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'earning_per_share' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>                                                                                                                                                                                                                        
+                    </th>   
+                    <th class="col-sm-1">                        
+<!--                        <a class="btn btn-info" ng-click="sortTypeSelected('pe_ratio')">-->
+                            PE
+<!--                            <span ng-show="sortType == 'pe_ratio' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'pe_ratio' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>                                                                                                                                                                        -->
+                    </th>                    
+                </tr>
+            </thead>
+            <tbody >
+                <tr ng-repeat="security in securitys" ng-click="selectedIndustry()">
+                    <td>{{security.security_symbol}}</td>
+                    <td>{{security.last_traded_price}}</td>
+                    <td>{{security.book_value}}</td>
+                    <td>{{security.pbv}}</td>                    
+                    <td>{{security.earning_per_share}}</td>
+                    <td>{{security.pe_ratio}}</td>
+                </tr>
+            </tbody>
+        </table> 
+    </div>
+    <uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
+
+
+</div>
+<!-- </div> -->

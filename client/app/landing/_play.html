@@ -1,0 +1,20 @@
+<button type="button" class="close" ng-click="cancel();">
+    <i class="fa fa-times-circle-o" style="margin:10px;color:black;"></i>
+</button>
+<div class="modal-header">
+    <h3 class="panel-title"><i class="fa fa-newspaper-o"></i> วิดิโอ</h3>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-heart"></i> {{filecontent.subject}}</h3>
+            </div>
+            <div class="panel-body text text-center">
+                <video autoplay="autoplay" preload="auto" controls="true">
+                    <source src="{{urlVideo}}" type="{{filecontent.type_filename}}" />
+                </video>
+            </div>
+        </div>
+    </div>
+</div>

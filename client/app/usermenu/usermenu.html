@@ -1,0 +1,99 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="content">
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <h3 class="panel-title">
+                            <i class="fa fa-list"></i> แสดงเมนู <span class="badge">{{totalItems}}</span></h3>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <button class="btn btn-default" data-toggle="tooltip" title="button_refresh" ng-click="refresh()"><i class="fa fa-refresh"> </i></button>
+                        <button class="btn btn-primary" data-toggle="tooltip" title="button_add" ng-click="create()"><i class="fa fa-plus"></i></button>
+                        <button type="button" data-toggle="tooltip" title="button_delete" class="btn btn-danger" ng-click="delete()"><i class="fa fa-trash-o"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="well">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+                            <ui-select ng-model="selectedItem" on-select="search($item)">
+                                <ui-select-match placeholder="ค้นหาชื่อสมาชิก">
+                                    <span ng-bind="$select.selected.login"></span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="user in (users | filter: $select.search) track by user.login">
+                                    <span ng-bind-html="user.login | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <!-- /.col-xs-6 col-md-3 -->
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-1 text-center">
+                                    <input type="checkbox" ng-model="selectedAll" ng-click="checkAll()" />
+                                </th>
+                                <th class="col-sm-2 text-left">
+                                    <a class="btn btn-link" ng-click="sortTypeSelected('login')">
+                                        Name
+                                        <span ng-show="sortType == 'login' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'login' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </th>
+                                <th class="col-sm-2 text-left">
+                                    <a class="btn btn-link" ng-click="sortTypeSelected('title')">
+                                        Title
+                                        <span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'title' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </th>
+                                <th class="col-sm-3 text-left">
+                                    <a class="btn btn-link" ng-click="sortTypeSelected('link')">
+                                        Link
+                                        <span ng-show="sortType == 'link' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'link' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </th>
+                                <th class="col-sm-2 text-left">
+                                    <a class="btn btn-link" ng-click="sortTypeSelected('icon')">
+                                        Icon
+                                        <span ng-show="sortType == 'icon' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'icon' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </th>
+                                <th class="col-sm-2 text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="row in rows">
+                                <td class="text-center">
+                                    <input type="checkbox" ng-model="row.selected" />
+                                </td>
+                                <td class="text-left">{{row.login}}</td>
+                                <td class="text-left">{{row.title}}</td>
+                                <td class="text-left">{{row.link}}</td>
+                                <td class="text-left">{{row.icon}}</td>
+                                <td class="text-center">
+                                    <switch ng-model="row.status" ng-change="changeStatus()"></switch>
+                                </td>
+                                <!--                                 <td class="text-right">
+                                    <a ng-click="edit()" data-toggle="tooltip" title="button_edit" class="btn btn-primary"><i class="fa fa-pencil"></i>
+                                    </a>
+                                </td>
+ -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include="'components/navbar/footer.html'"></div>

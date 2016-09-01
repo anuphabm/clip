@@ -1,0 +1,36 @@
+<div ng-include="'components/navbar/navbarlogin.html'"></div>
+<div class="container-fluid">
+    <div class="panel panel-info">
+        <div class="panel-heading">วิดิโอคลิป</div>
+        <div class="panel-body">
+            <div class="row">
+                <div ng-repeat="row in rows|orderBy:'id'">
+                    <div class="col-lg-3 col-md-3 col-sm-4">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                {{row.subject}}
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-4 text-left nopadding">
+                                        <img width="100" height="100" ng-if="row.preview" ng-src="/api/previews/{{row.id}}" class="img-responsive img-thumbnail">
+                                    </div>
+                                    <div class="col-xs-8 text-left nopadding">
+                                        {{row.description}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+<!--                                 <button class="btn btn-success" ng-click="play()"><i class="fa fa-video-camera fw-2x"></i> Play</button>
+ -->                                <a class="btn btn-primary" href="{{urldl}}" ng-click="sethref()">
+                                    <i class="fa fa-download fw-2x"></i> Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include="'components/navbar/footer.html'"></div>

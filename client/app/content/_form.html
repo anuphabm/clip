@@ -1,0 +1,68 @@
+<button type="button" class="close" ng-click="cancel();">
+    <i class="fa fa-times-circle-o" style="margin:10px;color:black;"></i>
+</button>
+<div class="modal-header">
+    <h3 class="panel-title"><i class="fa fa-newspaper-o"></i> เมนู</h3>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> เพิ่มคลิปวิดิโอ</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form" name="form">
+                    <div class="form-group">
+                        <label for="inputOndate" class="col-sm-3 control-label">วันเดือนปี</label>
+                        <div class="col-sm-9">
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" ng-model="dt" is-open="dtopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSubject" class="col-sm-3 control-label">ชื่อคลิป</label>
+                        <div class="col-sm-9">
+                            <input ng-model="fileContent.subject" value="คลิป18+" class="form-control" id="inputSubject" placeholder="Title">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDescription" class="col-sm-3 control-label">รายละเอียด</label>
+                        <div class="col-sm-9">
+                            <textarea ng-model="fileContent.description" rows="5" placeholder="รายละเอียด" id="inputDescription" class="form-control">คลิป 18+ คลิปเลย </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3 text text-right">
+                            <button type="button" ng-click="uploadFile('image')" class="btn btn-primary" ng-hide="flagImage"><i class="fa fa-file-image-o"></i> อัพโหลดรูปภาพ</button>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="file" class="well well-sm" ngf-select ng-model="fileContent.preview" name="preview" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="200MB" required ng-hide="flagImage">
+                            <span class="badge">อัตโหลดรูป {{progressPercentageImage}} %</span>
+                            <uib-alert ng-repeat="imageAlert in imageAlerts" type="success">{{imageAlert.msg}} file {{fileContent.preview}}</uib-alert>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3 text text-right">
+                            <button type="button" ng-click="uploadFile('video')" ng-hide="flagVideo" class="btn btn-primary"><i class="fa fa-file-video-o"></i> อัพโหลดวิดิโอ</button>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="file" class="well well-sm" ngf-select ng-model="fileContent.filename" name="filename" ng-hide="flagVideo" ngf-max-size="20MB">
+                            <span class="badge">อัพโหลดวิดิโอ {{progressPercentage}} % </span>
+                            <uib-alert ng-repeat="videoAlert in videoAlerts" type="success">{{videoAlert.msg}} file {{fileContent.filename}}</uib-alert>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button class="btn btn-primary" ng-click="save()"><i class="fa fa-save"></i> บันทึก</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

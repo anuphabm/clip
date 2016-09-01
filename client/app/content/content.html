@@ -1,0 +1,71 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="content">
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <h3 class="panel-title">
+                            <i class="fa fa-list"></i> แสดงวิดิโอคลิป <span class="badge">{{totalItems}}</span></h3>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <a data-toggle="tooltip" title="button_add" class="btn btn-primary" ng-click="create()"><i class="fa fa-plus"></i></a>
+                        <button type="button" data-toggle="tooltip" title="button_delete" class="btn btn-danger" ng-click="delete()"><i class="fa fa-trash-o"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-1 text-center">
+                                    <input type="checkbox" ng-model="selectedAll" ng-click="checkAll()" />
+                                </th>
+                                <th class="col-sm-2 text-left">แสดงรูป</th>
+                                <th class="col-sm-2 text-left">
+                                    <a class="btn btn-link" ng-click="sortTypeSelected('subject')">
+                                        หัวข้อ
+                                        <span ng-show="sortType == 'subject' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'subject' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </th>
+                                <th class="col-sm-2 text-left">
+                                    <a class="btn btn-link" ng-click="sortTypeSelected('description')">
+                                        รายละเอียด
+                                        <span ng-show="sortType == 'description' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'description' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </th>
+                                <th class="col-sm-3 text-right">
+                                    <a class="btn btn-link" ng-click="sortTypeSelected('ondate')">
+                                        ปี-เดือน-วันที่ส่ง
+                                        <span ng-show="sortType == 'ondate' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'ondate' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </th>
+                                <th class="col-sm-2 text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="row in rows">
+                                <td class="text-center">
+                                    <input type="checkbox" ng-model="row.selected" />
+                                </td>
+                                <td class="text-left">
+                                    <img width="100" height="100" ng-if="row.preview" ng-src="/api/previews/{{row.id}}" class="img-responsive img-thumbnail">
+                                </td>
+                                <td class="text-left">{{row.subject}}</td>
+                                <td class="text-left">{{row.description}}</td>
+                                <td class="text-right">{{row.ondate| date:'yyyy-MM-dd'}}</td>
+                                <td class="text-right"><a ng-click="edit()" data-toggle="tooltip" title="button_edit" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include="'components/navbar/footer.html'"></div>

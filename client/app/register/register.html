@@ -1,0 +1,47 @@
+<div id="container">
+    <header id="header" class="navbar navbar-static-top"></header>   
+    <div id="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-offset-4 col-sm-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h1 class="panel-title">
+                                <i class="fa fa-user-plus"></i> สมัครใช้บริการ
+                            </h1>
+                        </div>
+                        <div class="panel-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="input-username">ชื่อผู้ใช้งาน</label>
+                                    <div class="input-group"><span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <input type="text" ng-model="users.login" value="" placeholder="Username" id="input-username" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="input-password">รหัสผ่าน</label>
+                                    <div class="input-group"><span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                        <input type="password" ng-model="users.pass" value="" placeholder="Password" id="input-password" class="form-control" />
+                                    </div>                                                                        
+                                </div>
+                                <div class="form-group">
+                                    <label for="input-password">ยืนยันรหัสผ่าน</label>
+                                    <div class="input-group"><span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                        <input type="password" ng-model="confirmpass" value="" placeholder="Password" id="input-password" class="form-control" />
+                                    </div>                                                                        
+                                </div>
+                                
+                                <div class="text-right">
+                                    <button type="submit" ng-click="regis()" class="btn btn-primary"><i class="fa fa-registered"></i> Register</button>
+                                </div>
+                            </form>
+                            <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include="'components/navbar/footer.html'"></div>
+

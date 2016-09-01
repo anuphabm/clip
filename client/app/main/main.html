@@ -1,0 +1,54 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container-fluid">
+    <div class="panel panel-info">
+        <div class="panel-heading">ค้นหาหลักทรัพย์</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6 col-md-2">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="ชื่อย่อ" ng-model="search.symbol">
+                        <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="searchResult(search.symbol)"><i class="fa fa-search"></i> ค้นหา</button>
+                  </span>
+                    </div>
+                </div>
+            </div>
+            Data
+            <div class="panel-heading">ข้อมูลที่ค้นพบ : {{rowCount}} แถว</div>
+            <div class="table-responsive" ng-hide="detailStock">
+                <table class="table table-bordered table-hover" style="width: auto;">
+                    <thead class="bg-primary">
+                        <tr>
+                            <th class="col-sm-1">ชื่อหลักทรัพย์</th>
+                            <th class="col-sm-1">ราคาปิด <span>{{tradeDate | date:'yy-MM-dd'}}</span></th>
+                            <th class="col-sm-1">Book Value</th>
+                            <th class="col-sm-1">PBV</th>
+                            <th class="col-sm-1">PE</th>
+                            <th class="col-sm-1">Eps</th>
+                            <th class="col-sm-1">อุตสาหกรรม</th>
+                            <th class="col-sm-1">PBV อุตสาหกรรม</th>
+                            <th class="col-sm-1">PE อุตสาหกรรม</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="security in securitys" ng-click="selectedIndustry()">
+                            <td>{{security.security_symbol}}</td>
+                            <td>{{security.last_traded_price}}</td>
+                            <td>{{security.book_value}}</td>
+                            <td>{{security.pbv}}</td>
+                            <td>{{security.pe_ratio}}</td>
+                            <td>{{security.earning_per_share}}</td>
+                            <td>{{security.index_name}}</td>
+                            <td>{{security.pbv_rindex}}</td>
+                            <td>{{security.pe_rindex}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="panel-heading">PBV อุตสาหกรรม = {{pbv}} </div>
+                <div class="panel-heading">Book Value = {{book_value}} </div>
+                <div class="panel-heading">ผลคำนวณราคา {{pbv}} x {{book_value}} = {{priceBV|number:2}} </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include="'components/navbar/footer.html'"></div>

@@ -1,0 +1,38 @@
+
+
+<button type="button" class="close" ng-click="cancel();">
+    <i class="fa fa-times-circle-o" style="margin:10px;color:black;"></i>
+</button>
+<div class="modal-header">
+    <h3 class="panel-title"><i class="fa fa-newspaper-o"></i> ข่าวประชาสัมพันธ์</h3>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> เพิ่มข่าวประชาสัมพันธ์</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputNewSubject" class="col-sm-3 control-label">หัวข้อข่าว</label>
+                        <div class="col-sm-9">
+                            <input ng-model="newpaper.subject" class="form-control" id="inputNewSubject" placeholder="หัวข้อข่าว">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="input-new-detail" class="col-sm-3 control-label">รายละเอียดของข่าว</label>
+                        <div class="col-sm-9">
+                            <textarea ng-model="newpaper.detail" rows="5" placeholder="รายละเอียดของข่าว" id="input-new-detail" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button class="btn btn-primary" ng-click="save()"><i class="fa fa-save"></i> บันทึก</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

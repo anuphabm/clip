@@ -1,0 +1,44 @@
+
+
+<button type="button" class="close" ng-click="cancel();">
+    <i class="fa fa-times-circle-o" style="margin:10px;color:black;"></i>
+</button>
+<div class="modal-header">
+    <h3 class="panel-title"><i class="fa fa-newspaper-o"></i> เมนู</h3>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> เพิ่มเมนู</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputTitle" class="col-sm-3 control-label">Title</label>
+                        <div class="col-sm-9">
+                            <input ng-model="menu.title" class="form-control" id="inputTitle" placeholder="Title">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputLink" class="col-sm-3 control-label">Link</label>
+                        <div class="col-sm-9">
+                            <input ng-model="menu.link" class="form-control" id="inputLink" placeholder="Link">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inpuIcon" class="col-sm-3 control-label">Icon</label>
+                        <div class="col-sm-9">
+                            <input ng-model="menu.icon" class="form-control" id="inpuIcon" placeholder="Icon">
+                        </div>
+                    </div>                                        
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button class="btn btn-primary" ng-click="save()"><i class="fa fa-save"></i> บันทึก</button>
+                        </div>
+                    </div>
+                </form>            
+            </div>
+        </div>
+    </div>
+</div>
